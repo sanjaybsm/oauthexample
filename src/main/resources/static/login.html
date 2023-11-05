@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Login Form -->
+            <div class="card">
+                <div class="card-header">Login</div>
+                <div class="card-body">
+                    <form id="login-form" method="post">
+                        <!-- Add your login form fields here -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+
+                        <!-- Register Button (Open Registration Form) -->
+                        <button type="button" class="btn btn-secondary" id="register-button">Register</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Google Social Login Link -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <a href="#your-google-login-url" class="btn btn-danger btn-block">Login with Google</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+<!-- JavaScript to open the registration form page -->
+<script>
+    document.getElementById('register-button').addEventListener('click', function() {
+        // Replace 'registration.html' with the actual URL of your registration form page.
+        window.location.href = 'registration.html';
+    });
+</script>
+
+</body>
+</html>

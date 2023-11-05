@@ -1,0 +1,33 @@
+Certainly! To include GitLab secret for pushing the image to a GitLab repository, you can modify the  `.gitlab-ci.yml`  file as follows:
+# Specify the stages of the CI/CD pipeline
+stages:
+  - build
+  - test
+  - deploy
+
+# Define the job for building the application
+build:
+  stage: build
+  script:
+    - ./mvnw clean package
+
+# Define the job for running tests
+test:
+  stage: test
+  script:
+    - ./mvnw test
+
+# Define the job for deploying the application
+deploy:
+  stage: deploy
+  script:
+    - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin $DOCKER_REGISTRY_URL
+    - docker build -t $DOCKER_REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME .
+    - docker push $DOCKER_REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  In this updated version, the  `deploy`  job uses the GitLab secret variables  `$DOCKER_REGISTRY_USERNAME` ,  `$DOCKER_REGISTRY_PASSWORD` , and  `$DOCKER_REGISTRY_URL`  to authenticate and push the Docker image to the GitLab repository.
+  
+  Make sure to configure these secret variables in your GitLab project's CI/CD settings. Replace  `$DOCKER_REGISTRY_USERNAME` ,  `$DOCKER_REGISTRY_PASSWORD` , and  `$DOCKER_REGISTRY_URL`  with the appropriate variable names for your setup.
+
+Note: You may need to adjust the Docker image naming and repository URL based on your specific GitLab configuration.
+  
+  Feel free to modify this template further to suit your specific requirements or add additional steps as needed.
